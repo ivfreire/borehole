@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Borehole"
+run/main_scene="res://Scenes/Scene.tscn"
 config/icon="res://icon.png"
 
 [physics]

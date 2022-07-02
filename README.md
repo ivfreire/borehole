@@ -1,4 +1,4 @@
-# Borehole for Disposal of Sealed Radioative Sources
+# Borehole for Disused Sealed Radioative Sources
 
 Radioactive sources are known for remaining active for a very long period. Some will present high levels of radioactivity for thousands of years, even after their working life. Knowing most sources are highly radiotoxic, we need a solution for storing and keeping them safe until they present no threat to human life or the environment.
 

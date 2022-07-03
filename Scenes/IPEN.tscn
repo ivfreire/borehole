@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
+[ext_resource path="res://Models/IPEN.glb" type="PackedScene" id=2]
+[ext_resource path="res://Models/Sign.glb" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Borehole.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Source.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Models/Container.glb" type="PackedScene" id=6]
+
+[node name="Scene" type="Spatial"]
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.0703545, 0.882127, 0.465729, -0.583395, -0.342326, 0.736521, 0.809136, -0.323521, 0.490544, 19.2174, 19.3857, 21.2817 )
+shadow_enabled = true
+
+[node name="Source" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.0839388, 0, -0.996471, 0, 1, 0, 0.996471, 0, 0.0839388, 3.17503, -2.09847, -8.65782 )
+
+[node name="Borehole" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7337, -5.85006, -4.54879 )
+depth = 300.0
+
+[node name="View" type="Spatial" parent="."]
+script = ExtResource( 1 )
+speed = 100.0
+
+[node name="Camera" type="Camera" parent="View"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0 )
+current = true
+far = 120.0
+
+[node name="Barrel" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.97935, 0, -0.202172, 0, 1, 0, 0.202172, 0, 0.97935, -19.071, -4.10488, 5.07133 )
+
+[node name="Barrel2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.999281, 0, -0.037917, 0, 1, 0, 0.037917, 0, 0.999281, -18.7594, -4.10488, 2.8497 )
+
+[node name="IPEN" parent="." instance=ExtResource( 2 )]
+
+[node name="Sign" parent="IPEN" instance=ExtResource( 3 )]
+transform = Transform( -0.246323, 0, -0.969188, 0, 1, 0, 0.969188, 0, -0.246323, -10.6941, -8.59051, -7.39752 )

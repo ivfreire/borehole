@@ -11,12 +11,11 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	# Moves the view around
 	var velocity = Vector3.ZERO
 	velocity.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	velocity.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	self.translate(velocity * self.speed * delta)
-	
-	print(self.rotation)
 	
 	pass
 

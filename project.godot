@@ -8,10 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Source",
+"language": "GDScript",
+"path": "res://Scripts/Source.gd"
+} ]
+_global_script_class_icons={
+"Source": ""
+}
+
 [application]
 
 config/name="Borehole"
-run/main_scene="res://Scenes/Scene.tscn"
+run/main_scene="res://Scenes/IPEN.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -22,10 +22,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.39431, -5.59185, 3.42584 )
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -0.00323391, 0, 0.0223055 )
 
 [node name="Sign" parent="Surface" instance=ExtResource( 5 )]
-transform = Transform( -0.111812, 0, -0.314021, 0, 0.333333, 0, 0.314021, 0, -0.111812, -4.33068, -3.31636, 1.01473 )
+transform = Transform( -0.167718, 0, -0.471032, 0, 0.5, 0, 0.471032, 0, -0.167718, -4.33068, -3.31636, 1.01473 )
 
 [node name="View" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.34202, -0.939693, 0, 0.939693, 0.34202, 0, 0, 0 )
 script = ExtResource( 1 )
 speed = 100.0
 

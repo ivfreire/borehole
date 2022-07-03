@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/terrain.fbx-a9ec182bb88b95e711f77e3ba8ebeaf2.scn"
+path="res://.import/Casing.glb-56496bd52fa59c4a6ccb3b037aae5268.scn"
 
 [deps]
 
-source_file="res://Models/terrain.fbx"
-dest_files=[ "res://.import/terrain.fbx-a9ec182bb88b95e711f77e3ba8ebeaf2.scn" ]
+source_file="res://Models/Casing.glb"
+dest_files=[ "res://.import/Casing.glb-56496bd52fa59c4a6ccb3b037aae5268.scn" ]
 
 [params]
 

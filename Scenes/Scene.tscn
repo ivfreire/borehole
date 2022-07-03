@@ -1,43 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Prefabs/Container.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/Source.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Borehole.tscn" type="PackedScene" id=3]
-
-[sub_resource type="BoxShape" id=2]
+[ext_resource path="res://Models/IPEN.glb" type="PackedScene" id=4]
+[ext_resource path="res://Models/Sign.glb" type="PackedScene" id=5]
 
 [node name="Scene" type="Spatial"]
 
-[node name="Containers" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.42147, 0, -10.1107 )
-
-[node name="Container" parent="Containers" instance=ExtResource( 1 )]
-transform = Transform( -0.0858864, 0, -0.996305, 0, 1, 0, 0.996305, 0, -0.0858864, -1.01829, 1.77166, 0.324441 )
-
-[node name="Container2" parent="Containers" instance=ExtResource( 1 )]
-transform = Transform( -0.341659, 0, -0.939824, 0, 1, 0, 0.939824, 0, -0.341659, 1.0015, 1.77166, 0.324441 )
-
-[node name="Container3" parent="Containers" instance=ExtResource( 1 )]
-transform = Transform( -0.983404, 0, -0.181429, 0, 1, 0, 0.181429, 0, -0.983404, 1.01189, 2.137, 10.0446 )
-
-[node name="Ground" type="StaticBody" parent="."]
-transform = Transform( 20, 0, 0, 0, 0.5, 0, 0, 0, 20, 0, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Ground"]
-shape = SubResource( 2 )
-
-[node name="GroundMesh" type="CSGBox" parent="Ground"]
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.228572, 0.973527, 0, -0.973527, 0.228572, 0, 15.2748, 0.754367 )
-current = true
-
-[node name="Light" type="DirectionalLight" parent="."]
-transform = Transform( -0.427453, 0.835487, -0.345319, -0.78849, -0.157698, 0.594487, 0.44223, 0.526396, 0.726182, 0, 8.83974, 7.74384 )
-light_energy = 0.2
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.0703545, 0.882127, 0.465729, -0.583395, -0.342326, 0.736521, 0.809136, -0.323521, 0.490544, 19.2174, 19.3857, 21.2817 )
 shadow_enabled = true
 
 [node name="Source" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.0858864, 0, -0.996305, 0, 1, 0, 0.996305, 0, -0.0858864, 0.167153, 2.73215, -8.65782 )
+transform = Transform( 0.0839388, 0, -0.996471, 0, 1, 0, 0.996471, 0, 0.0839388, 3.17503, -2.09847, -8.65782 )
 
 [node name="Borehole" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.39431, -5.59185, 3.42584 )
+
+[node name="Surface" parent="." instance=ExtResource( 4 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -0.00323391, 0, 0.0223055 )
+
+[node name="Sign" parent="Surface" instance=ExtResource( 5 )]
+transform = Transform( -0.111812, 0, -0.314021, 0, 0.333333, 0, 0.314021, 0, -0.111812, -4.33068, -3.31636, 1.01473 )
+
+[node name="View" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.34202, -0.939693, 0, 0.939693, 0.34202, 0, 0, 0 )
+script = ExtResource( 1 )
+speed = 100.0
+
+[node name="Camera" type="Camera" parent="View"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 90, 0 )
+current = true
+far = 120.0

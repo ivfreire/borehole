@@ -1,5 +1,7 @@
 # Borehole for disposal of Disused Sealed Radioactive Sources
 
+<img src='screenshot.png' width='100%'>
+
 Radioactive sources are known for remaining active for a very long period. Some will present high levels of radioactivity for thousands of years, even after their working life. Knowing most sources are highly radiotoxic, we need a solution for storing and keeping them safe until they present no threat to human life or the environment.
 
 In this project, we explore the concept of a borehole disposal facility proposed by the IAEA. The goal is to develop a computational tool for modeling the physical processes and features that might happen to a facility. In addition to modeling, we aim to create a tool for visualizing the physical elements and effects of this borehole well.

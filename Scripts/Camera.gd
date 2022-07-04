@@ -18,6 +18,8 @@ func _physics_process(delta):
 	self.velocity.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	self.translate(velocity * self.speed * delta)
 	
+	$UI/SideView/Height.text = str(int(self.translation.y)) + ' m'
+	
 	pass
 
 func _unhandled_input(event):
@@ -48,6 +50,8 @@ func change_view():
 		$Camera.size = 100
 		$Camera.projection = Camera.PROJECTION_ORTHOGONAL
 		
+		$UI/SideView.visible = true
+		
 		self.view = View.SIDE
 		return
 		
@@ -56,6 +60,8 @@ func change_view():
 		self.translation = Vector3.ZERO
 		
 		$Camera.projection = Camera.PROJECTION_PERSPECTIVE
+		
+		$UI/SideView.visible = false
 		
 		self.view = View.TOP
 		return

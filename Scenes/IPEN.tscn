@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Models/IPEN.glb" type="PackedScene" id=2]
 [ext_resource path="res://Models/Sign.glb" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/Borehole.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/RegularText.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Models/Container.glb" type="PackedScene" id=6]
 
 [node name="Scene" type="Spatial"]
@@ -13,7 +14,7 @@ transform = Transform( 0.0703545, 0.882127, 0.465729, -0.583395, -0.342326, 0.73
 shadow_enabled = true
 
 [node name="Borehole" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4968, -5.85006, -3.38562 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4968, -5.26065, -3.38562 )
 title = "SEGRR Borehole"
 depth = 300.0
 
@@ -25,6 +26,23 @@ speed = 100.0
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0 )
 current = true
 far = 500.0
+
+[node name="UI" type="Control" parent="View"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="SideView" type="Control" parent="View/UI"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Height" type="Label" parent="View/UI/SideView"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 120.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 5 )
+text = "0 m"
 
 [node name="Barrel" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.97935, 0, -0.202172, 0, 1, 0, 0.202172, 0, 0.97935, -19.071, -4.10488, 5.07133 )

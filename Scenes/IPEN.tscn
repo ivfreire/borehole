@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Models/IPEN.glb" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Prefabs/Borehole.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Fonts/RegularText.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Models/Container.glb" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/Container.tscn" type="PackedScene" id=7]
 
 [node name="Scene" type="Spatial"]
 
@@ -14,7 +15,7 @@ transform = Transform( 0.0703545, 0.882127, 0.465729, -0.583395, -0.342326, 0.73
 shadow_enabled = true
 
 [node name="Borehole" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4968, -5.26065, -3.38562 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4968, -7.43299, -3.38562 )
 title = "SEGRR Borehole"
 depth = 300.0
 
@@ -54,3 +55,11 @@ transform = Transform( 0.889121, 0, 0.457672, 0, 1, 0, -0.457672, 0, 0.889121, -
 
 [node name="Sign" parent="IPEN" instance=ExtResource( 3 )]
 transform = Transform( -0.246323, 0, -0.969188, 0, 1, 0, 0.969188, 0, -0.246323, -10.6941, -8.59051, -7.39752 )
+
+[node name="Container" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.22, -4.04345, 5.94355 )
+
+[node name="Sediment" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -252.739, -95.5113 )
+width = 247.251
+height = 500.0

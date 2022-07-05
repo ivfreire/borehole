@@ -49,6 +49,7 @@ func change_view():
 		
 		$Camera.size = 100
 		$Camera.projection = Camera.PROJECTION_ORTHOGONAL
+		#$Camera.translation.y = -300
 		
 		$UI/SideView.visible = true
 		

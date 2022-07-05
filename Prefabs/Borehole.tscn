@@ -1,24 +1,20 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Borehole.gd" type="Script" id=1]
 [ext_resource path="res://Models/CasingHead.glb" type="PackedScene" id=2]
 [ext_resource path="res://Models/CasingBottom.glb" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Fonts/Roboto/Roboto-Light.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Themes/PanelTitle.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Models/Casing.glb" type="PackedScene" id=6]
+[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=7]
+[ext_resource path="res://Themes/PanelText.tres" type="DynamicFont" id=8]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape" id=8]
+radius = 10.0
+height = 3.0
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0, 0, 0, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="CylinderShape" id=7]
+radius = 1.7
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
@@ -26,17 +22,6 @@ font_data = ExtResource( 4 )
 [sub_resource type="Theme" id=3]
 /colors/white = Color( 1, 1, 1, 1 )
 /fonts/Roboto = SubResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 20
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_char = 1
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 15
-font_data = ExtResource( 4 )
 
 [node name="Borehole" type="Spatial"]
 script = ExtResource( 1 )
@@ -46,13 +31,23 @@ outer_radius = 20.0
 
 [node name="Head" parent="." instance=ExtResource( 2 )]
 
+[node name="Casing" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
 [node name="Bottom" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.94435, 0 )
 
-[node name="Area" type="Area" parent="."]
+[node name="TopArea" type="Area" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape" parent="TopArea"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+shape = SubResource( 8 )
+
+[node name="CasingArea" type="Area" parent="."]
+input_capture_on_drag = true
+
+[node name="Cylinder" type="CollisionShape" parent="CasingArea"]
+shape = SubResource( 7 )
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -62,7 +57,7 @@ margin_bottom = 40.0
 [node name="Info" type="Panel" parent="Control"]
 margin_right = 256.0
 margin_bottom = 120.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = ExtResource( 7 )
 
 [node name="Title" type="Label" parent="Control/Info"]
 margin_left = 24.0
@@ -70,7 +65,7 @@ margin_top = 16.0
 margin_right = 116.0
 margin_bottom = 42.0
 theme = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Borehole"
 
 [node name="RadioactivityText" type="Label" parent="Control/Info"]
@@ -79,7 +74,7 @@ margin_top = 80.0
 margin_right = 128.0
 margin_bottom = 106.0
 theme = SubResource( 3 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 8 )
 text = "Total activity:"
 
 [node name="RadioactivityUnit" type="Label" parent="Control/Info"]
@@ -88,7 +83,7 @@ margin_top = 80.0
 margin_right = 226.0
 margin_bottom = 98.0
 theme = SubResource( 3 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 8 )
 text = "Bq"
 
 [node name="Radioactivity" type="Label" parent="Control/Info"]
@@ -97,7 +92,7 @@ margin_top = 80.0
 margin_right = 196.0
 margin_bottom = 98.0
 theme = SubResource( 3 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 
@@ -107,7 +102,7 @@ margin_top = 56.0
 margin_right = 112.0
 margin_bottom = 74.0
 theme = SubResource( 3 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 8 )
 text = "Sources:"
 
 [node name="Sources" type="Label" parent="Control/Info"]
@@ -116,9 +111,11 @@ margin_top = 56.0
 margin_right = 196.0
 margin_bottom = 74.0
 theme = SubResource( 3 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 8 )
 text = "0"
 align = 2
 
-[connection signal="mouse_entered" from="Area" to="." method="_on_Area_mouse_entered"]
-[connection signal="mouse_exited" from="Area" to="." method="_on_Area_mouse_exited"]
+[connection signal="mouse_entered" from="TopArea" to="." method="_on_Area_mouse_entered"]
+[connection signal="mouse_exited" from="TopArea" to="." method="_on_Area_mouse_exited"]
+[connection signal="mouse_entered" from="CasingArea" to="." method="_on_CasingArea_mouse_entered"]
+[connection signal="mouse_exited" from="CasingArea" to="." method="_on_CasingArea_mouse_exited"]

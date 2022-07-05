@@ -11,13 +11,15 @@ export var outer_radius: float		# in cm
 var sources = []
 export var activity: float = 0
 
-var casing = load('res://Prefabs/Casing.tscn')
+var container = load('res://Prefabs/Container.tscn')
+
 var gui = false
 
 const N_A: float = 6.022 * pow(10, 23)	# Avogadro's number
 
 func _ready():
-	# Remove code later
+	
+	# Remove this bit of code later
 	self.sources = [
 		['A', 10, 611],
 		['B', 20, 30],
@@ -27,13 +29,15 @@ func _ready():
 	
 	$Control/Info/Title.text = self.title
 	
-	var n = int(depth / 100)
-	for i in n:
-		var obj = casing.instance()
-		obj.translation.y = -100 * i
-		self.add_child(obj)
-
-	$Bottom.translation = Vector3.DOWN * n * 100
+	$Casing.translation.y = -self.depth
+	$Casing.scale.y = self.depth
+	$Bottom.translation.y = - self.depth
+	
+	$CasingArea/Cylinder.shape.height = self.depth - 2
+	$CasingArea/Cylinder.translation.y = - self.depth / 2
+	
+	# Instanciate containers
+	self.create_sources()
 
 	pass
 
@@ -57,10 +61,19 @@ func _physics_process(delta):
 	
 	pass
 
+# Instanciates sources objects
+func create_sources():
+	for i in len(self.sources):
+		var obj = container.instance()
+		obj.rotation.y = - PI / 2
+		obj.translation.y = 1.3 + i * 3 - self.depth
+		self.add_child(obj)
+	pass
+
+# Update sources
 func update_sources(delta):
 	for i in len(self.sources):
 		self.sources[i][1] = self.sources[i][1] * (1 - log(2) * delta / self.sources[i][2])
-
 
 func _on_Area_mouse_entered():
 	$Control.visible = true
@@ -69,3 +82,15 @@ func _on_Area_mouse_entered():
 func _on_Area_mouse_exited():
 	$Control.visible = false
 	pass
+
+
+func _on_CasingArea_mouse_entered():
+	$Casing.visible = false
+	$Control.visible = true
+	pass
+
+
+func _on_CasingArea_mouse_exited():
+	$Casing.visible = true
+	$Control.visible = false
+	pass # Replace with function body.

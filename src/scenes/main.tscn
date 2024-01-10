@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://0cgb5mayamfv"]
+
+[ext_resource type="PackedScene" uid="uid://b0ue0n7pwf1ge" path="res://models/surface_ground.glb" id="1_wgckx"]
+[ext_resource type="Script" path="res://scripts/borehole.gd" id="2_4f3b5"]
+[ext_resource type="PackedScene" uid="uid://beu16vo6nl7mt" path="res://models/borehole_bottom.glb" id="3_yvlud"]
+[ext_resource type="PackedScene" uid="uid://b7ivdxr5ptq2i" path="res://models/borehole_casing.glb" id="4_qiba4"]
+[ext_resource type="PackedScene" uid="uid://csq3p2ovj3gun" path="res://models/borehole_mortar.glb" id="5_pmkyt"]
+[ext_resource type="PackedScene" uid="uid://biixmeytgkneg" path="res://models/borehole_mortar_top.glb" id="6_qyhrk"]
+[ext_resource type="PackedScene" uid="uid://cs6ilvm4dcl5e" path="res://models/borehole_top.glb" id="7_ulxu6"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xkgyi"]
+rayleigh_color = Color(0.807843, 0.576471, 0.396078, 1)
+turbidity = 0.0
+sun_disk_scale = 1.5
+ground_color = Color(0.294118, 0.32549, 0.317647, 1)
+
+[sub_resource type="Sky" id="Sky_bdpqi"]
+sky_material = SubResource("PhysicalSkyMaterial_xkgyi")
+
+[sub_resource type="Environment" id="Environment_03g1c"]
+background_mode = 2
+sky = SubResource("Sky_bdpqi")
+
+[node name="World" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.46924, -0.575674, 0.669637, 0, 0.758305, 0.6519, -0.88307, -0.305898, 0.355827, 0, 13.2993, 0)
+light_energy = 0.7
+shadow_enabled = true
+
+[node name="Surface" type="Node3D" parent="."]
+
+[node name="Ground" parent="Surface" instance=ExtResource("1_wgckx")]
+
+[node name="View" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="View"]
+transform = Transform3D(1, 0, 0, 0, 0.877649, 0.479305, 0, -0.479305, 0.877649, 0, 3.72782, 10.24)
+
+[node name="Borehole" type="Node3D" parent="."]
+script = ExtResource("2_4f3b5")
+depth = 10.0
+
+[node name="Structure" type="Node3D" parent="Borehole"]
+
+[node name="Top" parent="Borehole/Structure" instance=ExtResource("7_ulxu6")]
+
+[node name="Casing" parent="Borehole/Structure" instance=ExtResource("4_qiba4")]
+
+[node name="Bottom" parent="Borehole/Structure" instance=ExtResource("3_yvlud")]
+
+[node name="Mortar Top" parent="Borehole/Structure" instance=ExtResource("6_qyhrk")]
+visible = false
+
+[node name="Mortar" parent="Borehole/Structure" instance=ExtResource("5_pmkyt")]
+visible = false
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_03g1c")
